@@ -9,6 +9,10 @@ from nautobot.apps.forms import (
     add_blank_choice,
 )
 
+from nautobot_chatops.integrations.grafana.forms import (
+    GrafanaDashboardBulkEditForm as GrafanaDashboardIntegrationBulkEditForm,
+)
+
 from .choices import AccessGrantTypeChoices, CommandStatusChoices, PlatformChoices
 from .constants import ACCESS_GRANT_COMMAND_HELP_TEXT, COMMAND_TOKEN_TOKEN_HELP_TEXT
 from .models import AccessGrant, ChatOpsAccountLink, CommandLog, CommandToken
@@ -134,3 +138,7 @@ class CommandTokenBulkEditForm(NautobotBulkEditForm):
         nullable_fields = [
             "comment",
         ]
+
+
+# Re-export Grafana dashboard bulk edit form for Nautobot's lookup utilities.
+GrafanaDashboardBulkEditForm = GrafanaDashboardIntegrationBulkEditForm

@@ -14,6 +14,7 @@ from nautobot_chatops.api.views.mattermost import MattermostInteractionView, Mat
 from nautobot_chatops.api.views.ms_teams import MSTeamsMessagesView
 from nautobot_chatops.api.views.slack import SlackEventAPIView, SlackInteractionView, SlackSlashCommandView
 from nautobot_chatops.api.views.webex import WebexView
+from nautobot_chatops.integrations.grafana.api.urls import urlpatterns as grafana_urlpatterns
 
 urlpatterns = [
     path("lookup/", AccessLookupView.as_view(), name="access_lookup"),
@@ -36,3 +37,7 @@ router.register("accountlink", ChatOpsAccountLinkViewSet)
 
 app_name = "nautobot_chatops-api"
 urlpatterns += router.urls
+
+urlpatterns += [
+    *grafana_urlpatterns,
+]

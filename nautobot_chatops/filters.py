@@ -4,6 +4,9 @@ import django_filters
 from nautobot.apps.filters import NautobotFilterSet, SearchFilter
 
 from nautobot_chatops.choices import PlatformChoices
+from nautobot_chatops.integrations.grafana.filters import (
+    DashboardFilterSet as GrafanaDashboardIntegrationFilterSet,
+)
 from nautobot_chatops.models import AccessGrant, ChatOpsAccountLink, CommandLog, CommandToken
 
 
@@ -82,3 +85,7 @@ class CommandTokenFilterSet(NautobotFilterSet):
 
         model = CommandToken
         fields = "__all__"
+
+
+# Re-export Grafana dashboard filter for Nautobot's lookup utilities.
+GrafanaDashboardFilterSet = GrafanaDashboardIntegrationFilterSet
